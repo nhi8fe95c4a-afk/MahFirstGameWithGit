@@ -4,4 +4,4 @@
 [Bb]uild/
 Logs/
 UserSettings/
-Assets/AssetStoreTools*
+Assets/AssetStoreTools**.backup

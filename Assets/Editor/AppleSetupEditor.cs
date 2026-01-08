@@ -46,7 +46,10 @@ public class AppleSetupEditor : EditorWindow
         // Step 3: Setup UI for Score Counter
         SetupScoreUI();
 
-        // Step 4: Disable dialogue system
+        // Step 4: Setup Camera Follow
+        SetupCameraFollow();
+
+        // Step 5: Disable dialogue system
         DisableDialogueSystem();
 
         // Mark scene as dirty and save
@@ -54,7 +57,7 @@ public class AppleSetupEditor : EditorWindow
         EditorSceneManager.SaveScene(scene);
 
         Debug.Log("Apple Collection System setup complete!");
-        EditorUtility.DisplayDialog("Success", "Apple Collection System has been set up successfully!", "OK");
+        EditorUtility.DisplayDialog("Success", "Apple Collection System has been set up successfully!\n\nAdded:\n- 19 apples (Apple 2-20)\n- Score UI\n- Camera Follow\n- Disabled Dialogue", "OK");
     }
 
     static void SetupApple(GameObject apple)
@@ -160,6 +163,42 @@ public class AppleSetupEditor : EditorWindow
         scoreManager.scoreText = scoreText;
 
         Debug.Log("Score UI setup complete");
+    }
+
+    static void SetupCameraFollow()
+    {
+        // Find Main Camera
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        if (mainCamera == null)
+        {
+            Debug.LogError("Main Camera not found!");
+            return;
+        }
+
+        // Find Player
+        GameObject player = GameObject.Find("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player not found!");
+            return;
+        }
+
+        // Add or update CameraFollow component
+        CameraFollow cameraFollow = mainCamera.GetComponent<CameraFollow>();
+        if (cameraFollow == null)
+        {
+            cameraFollow = mainCamera.AddComponent<CameraFollow>();
+        }
+
+        // Configure camera follow settings
+        cameraFollow.target = player.transform;
+        cameraFollow.deadZoneWidth = 3f;
+        cameraFollow.deadZoneHeight = 2f;
+        cameraFollow.smoothSpeed = 0.125f;
+        cameraFollow.offset = new Vector3(0, 0, -10);
+        cameraFollow.useLimits = false;
+
+        Debug.Log("Camera Follow setup complete");
     }
 
     static void DisableDialogueSystem()

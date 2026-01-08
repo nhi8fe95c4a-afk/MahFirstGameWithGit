@@ -8,8 +8,9 @@ The apple collection system allows the player to collect floating apples that in
 ## Files Created
 1. `Assets/AppleCollectible.cs` - Script for collectible apples with floating animation
 2. `Assets/ScoreManager.cs` - Script to manage score display
-3. `Assets/DialogueUI.cs` - Fixed to properly close dialogue on E key press
-4. `Assets/Editor/AppleSetupEditor.cs` - Editor tool to automate setup (optional, can be done manually)
+3. `Assets/CameraFollow.cs` - Script for camera follow with flexible dead zone
+4. `Assets/DialogueUI.cs` - Fixed to properly close dialogue on E key press
+5. `Assets/Editor/AppleSetupEditor.cs` - Editor tool to automate setup (recommended)
 
 ## Manual Setup Instructions
 
@@ -109,19 +110,38 @@ The Player should already have a collider. Make sure:
 4. When touching an apple, it should disappear and score should increase
 5. Score should display in top-right corner as "00", "01", "02", etc.
 
-## Using the Editor Tool (Optional)
+## Using the Editor Tool (Recommended)
 
-Alternatively, you can use the automated setup tool:
+The automated setup tool is the easiest way to set everything up:
 1. In Unity menu bar, go to: Tools → Setup Apple Collection System
 2. This will automatically:
    - Update Apple 1 to use AppleCollectible
    - Create 19 more apples at random positions
    - Create the Score UI
+   - Setup Camera Follow with dead zone
    - Disable the dialogue system
 3. Click OK when the success dialog appears
 4. Save the scene (Ctrl+S / Cmd+S)
 
+## Manual Camera Follow Setup
+
+If you want to set up camera follow manually:
+1. Select "Main Camera" in Hierarchy
+2. In Inspector, click "Add Component"
+3. Search for and add "Camera Follow" script
+4. Drag the "Player" GameObject into the "Target" field
+5. Configure dead zone settings:
+   - Dead Zone Width: 3 (horizontal tolerance before camera moves)
+   - Dead Zone Height: 2 (vertical tolerance before camera moves)
+   - Smooth Speed: 0.125 (how smoothly camera follows)
+   - Offset: (0, 0, -10) (camera depth)
+
 ## Troubleshooting
+
+**Camera doesn't follow player:**
+- Verify CameraFollow script is attached to Main Camera
+- Check that Target field points to Player GameObject
+- Ensure camera Z position (offset) is negative (e.g., -10)
 
 **Apples don't disappear when touched:**
 - Make sure Apple colliders have "Is Trigger" checked
