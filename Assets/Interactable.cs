@@ -15,21 +15,32 @@ public class Interactable : MonoBehaviour
     [Tooltip("The range at which the player can interact with this object")]
     public float interactionRange = 2f;
 
-    private Transform playerTransform;
-    private DialogueUI dialogueUI;
+    [Header("References")]
+    [Tooltip("Reference to the player transform. If not set, will try to find by name.")]
+    public Transform playerTransform;
+    
+    [Tooltip("Reference to the DialogueUI. If not set, will search for it.")]
+    public DialogueUI dialogueUI;
+
     private bool isPlayerInRange = false;
 
     void Start()
     {
-        // Find the player in the scene
-        GameObject player = GameObject.Find("Player");
-        if (player != null)
+        // Find the player in the scene if not assigned
+        if (playerTransform == null)
         {
-            playerTransform = player.transform;
+            GameObject player = GameObject.Find("Player");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+            }
         }
 
-        // Find the DialogueUI in the scene
-        dialogueUI = FindAnyObjectByType<DialogueUI>();
+        // Find the DialogueUI in the scene if not assigned
+        if (dialogueUI == null)
+        {
+            dialogueUI = FindAnyObjectByType<DialogueUI>();
+        }
     }
 
     void Update()

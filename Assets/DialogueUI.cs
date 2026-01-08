@@ -30,11 +30,6 @@ public class DialogueUI : MonoBehaviour
         CheckInput();
     }
 
-    void LateUpdate()
-    {
-        // LateUpdate is also paused, but we call this from a coroutine when paused
-    }
-
     void OnGUI()
     {
         // OnGUI runs even when Time.timeScale = 0, so we check input here too
