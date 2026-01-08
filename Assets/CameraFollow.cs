@@ -13,10 +13,10 @@ public class CameraFollow : MonoBehaviour
 
     [Header("Dead Zone Settings")]
     [Tooltip("Horizontal dead zone width. Camera won't move if player is within this zone.")]
-    public float deadZoneWidth = 2f;
+    public float deadZoneWidth = 3f;
     
     [Tooltip("Vertical dead zone height. Camera won't move if player is within this zone.")]
-    public float deadZoneHeight = 1.5f;
+    public float deadZoneHeight = 2f;
 
     [Header("Follow Settings")]
     [Tooltip("How smoothly the camera follows the target (higher = smoother but slower)")]
