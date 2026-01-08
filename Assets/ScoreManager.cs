@@ -49,7 +49,8 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            // Format score with leading zero (00, 01, 02, etc.)
+            // Format score with leading zeros (00-99, then 100+)
+            // With 20 apples in the game, D2 format is sufficient
             scoreText.text = currentScore.ToString("D2");
         }
     }

@@ -35,7 +35,7 @@ public class AppleCollectible : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player touched the apple
-        if (other.CompareTag("Player") || other.gameObject.name == "Player")
+        if (other.CompareTag("Player"))
         {
             CollectApple();
         }
