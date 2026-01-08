@@ -35,6 +35,7 @@ public class PlayerController2D : MonoBehaviour
     private bool jumpConsumed;
     private float jumpCooldown; // Задержка после прыжка для предотвращения застревания
     private const string AutoGCName = "_Auto_GroundCheck";
+    private const float JUMP_GROUND_CHECK_COOLDOWN = 0.15f; // Время до повторной проверки земли после прыжка
 
     void Reset()
     {
@@ -104,7 +105,7 @@ public class PlayerController2D : MonoBehaviour
         jumpConsumed = true;
         lastOnGroundTime = 0f;
         lastJumpPressedTime = 0f;
-        jumpCooldown = 0.15f; // Задержка перед следующей проверкой земли
+        jumpCooldown = JUMP_GROUND_CHECK_COOLDOWN;
 
         Vector2 v = rb.linearVelocity;
         v.y = 0f;
