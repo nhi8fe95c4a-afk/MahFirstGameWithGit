@@ -14,7 +14,7 @@ public class PlayerController2D : MonoBehaviour
     public float jumpBufferTime = 0.1f;
     public float lowJumpMultiplier = 2f;
     public float fallMultiplier = 2.5f;
-    public int maxJumps = 2; // 1 = single jump, 2 = double jump, etc.
+    public int maxJumps = 1; // Number of air jumps allowed (1 = double jump total)
     public float airJumpMultiplier = 0.9f; // Air jumps are slightly weaker
 
     [Header("Ground Check")]
@@ -126,7 +126,7 @@ public class PlayerController2D : MonoBehaviour
         if (isGroundJump)
         {
             jumpCooldown = JUMP_GROUND_CHECK_COOLDOWN;
-            jumpsRemaining = maxJumps - 1; // Используем один прыжок
+            jumpsRemaining = maxJumps; // Восстанавливаем все воздушные прыжки
         }
         else
         {
