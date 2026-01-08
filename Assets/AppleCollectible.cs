@@ -23,7 +23,9 @@ public class AppleCollectible : MonoBehaviour
     private bool isCollected = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D appleCollider;
-    private ScoreManager scoreManager;
+    
+    // Static reference shared by all apples for performance
+    private static ScoreManager scoreManager;
 
     void Start()
     {
@@ -39,8 +41,11 @@ public class AppleCollectible : MonoBehaviour
         // Get the collider component (cache for performance)
         appleCollider = GetComponent<Collider2D>();
         
-        // Find and cache the ScoreManager (do this once instead of on each collection)
-        scoreManager = FindAnyObjectByType<ScoreManager>();
+        // Find and cache the ScoreManager only once for all apples (static reference)
+        if (scoreManager == null)
+        {
+            scoreManager = FindAnyObjectByType<ScoreManager>();
+        }
         
         // Debug: Verify the apple is initialized properly
         Debug.Log($"Apple {gameObject.name} initialized at position {startPosition}");
@@ -112,6 +117,7 @@ public class AppleCollectible : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
+        // Use Color.clear (0,0,0,0) for target - more efficient than creating new Color
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
         
         while (elapsedTime < fadeOutTime)
