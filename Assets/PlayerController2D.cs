@@ -33,7 +33,9 @@ public class PlayerController2D : MonoBehaviour
     private float lastJumpPressedTime;
 
     private bool jumpConsumed;
+    private float jumpCooldown; // Задержка после прыжка для предотвращения застревания
     private const string AutoGCName = "_Auto_GroundCheck";
+    private const float JUMP_GROUND_CHECK_COOLDOWN = 0.15f; // Время до повторной проверки земли после прыжка
 
     void Reset()
     {
@@ -46,6 +48,7 @@ public class PlayerController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         rb.freezeRotation = true;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Предотвращает проваливание
 
         TryEnsureGroundCheck();
     }
@@ -61,13 +64,10 @@ public class PlayerController2D : MonoBehaviour
         // Таймеры
         lastOnGroundTime -= Time.deltaTime;
         lastJumpPressedTime -= Time.deltaTime;
+        jumpCooldown -= Time.deltaTime;
 
-        // Проверка земли (без падения, если groundCheck вдруг не задан)
-        bool grounded = false;
-        if (groundCheck != null)
-        {
-            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
-        }
+        // Проверка земли
+        bool grounded = ShouldCheckGround() && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
         groundedDebug = grounded;
         if (grounded)
         {
@@ -96,11 +96,20 @@ public class PlayerController2D : MonoBehaviour
         return lastOnGroundTime > 0f && lastJumpPressedTime > 0f && !jumpConsumed;
     }
 
+    private bool ShouldCheckGround()
+    {
+        // Не проверяем землю если:
+        // - groundCheck не настроен
+        // - мы только что прыгнули (cooldown активен)
+        return groundCheck != null && jumpCooldown <= 0f;
+    }
+
     private void DoJump()
     {
         jumpConsumed = true;
         lastOnGroundTime = 0f;
         lastJumpPressedTime = 0f;
+        jumpCooldown = JUMP_GROUND_CHECK_COOLDOWN;
 
         Vector2 v = rb.linearVelocity;
         v.y = 0f;
