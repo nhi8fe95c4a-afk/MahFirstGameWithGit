@@ -66,12 +66,8 @@ public class PlayerController2D : MonoBehaviour
         lastJumpPressedTime -= Time.deltaTime;
         jumpCooldown -= Time.deltaTime;
 
-        // Проверка земли (без падения, если groundCheck вдруг не задан)
-        bool grounded = false;
-        if (groundCheck != null && jumpCooldown <= 0f) // Не проверяем землю сразу после прыжка
-        {
-            grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
-        }
+        // Проверка земли
+        bool grounded = ShouldCheckGround() && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
         groundedDebug = grounded;
         if (grounded)
         {
@@ -98,6 +94,14 @@ public class PlayerController2D : MonoBehaviour
     private bool CanJump()
     {
         return lastOnGroundTime > 0f && lastJumpPressedTime > 0f && !jumpConsumed;
+    }
+
+    private bool ShouldCheckGround()
+    {
+        // Не проверяем землю если:
+        // - groundCheck не настроен
+        // - мы только что прыгнули (cooldown активен)
+        return groundCheck != null && jumpCooldown <= 0f;
     }
 
     private void DoJump()
