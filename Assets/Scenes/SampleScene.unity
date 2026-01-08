@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1234567892}
   - component: {fileID: 1234567893}
   - component: {fileID: 1234567894}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 3000000003}
   - component: {fileID: 3000000004}
   - component: {fileID: 3000000005}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1344,7 +1344,7 @@ GameObject:
   - component: {fileID: 3000000008}
   - component: {fileID: 3000000009}
   - component: {fileID: 3000000010}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 3000000013}
   - component: {fileID: 3000000014}
   - component: {fileID: 3000000015}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1644,7 +1644,7 @@ GameObject:
   - component: {fileID: 3000000018}
   - component: {fileID: 3000000019}
   - component: {fileID: 3000000020}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1794,7 @@ GameObject:
   - component: {fileID: 3000000023}
   - component: {fileID: 3000000024}
   - component: {fileID: 3000000025}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1944,7 +1944,7 @@ GameObject:
   - component: {fileID: 3000000028}
   - component: {fileID: 3000000029}
   - component: {fileID: 3000000030}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2094,7 +2094,7 @@ GameObject:
   - component: {fileID: 3000000033}
   - component: {fileID: 3000000034}
   - component: {fileID: 3000000035}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2244,7 +2244,7 @@ GameObject:
   - component: {fileID: 3000000038}
   - component: {fileID: 3000000039}
   - component: {fileID: 3000000040}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2394,7 @@ GameObject:
   - component: {fileID: 3000000043}
   - component: {fileID: 3000000044}
   - component: {fileID: 3000000045}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2544,7 +2544,7 @@ GameObject:
   - component: {fileID: 3000000048}
   - component: {fileID: 3000000049}
   - component: {fileID: 3000000050}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 3000000053}
   - component: {fileID: 3000000054}
   - component: {fileID: 3000000055}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2844,7 +2844,7 @@ GameObject:
   - component: {fileID: 3000000058}
   - component: {fileID: 3000000059}
   - component: {fileID: 3000000060}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2994,7 +2994,7 @@ GameObject:
   - component: {fileID: 3000000063}
   - component: {fileID: 3000000064}
   - component: {fileID: 3000000065}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3144,7 +3144,7 @@ GameObject:
   - component: {fileID: 3000000068}
   - component: {fileID: 3000000069}
   - component: {fileID: 3000000070}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3294,7 +3294,7 @@ GameObject:
   - component: {fileID: 3000000073}
   - component: {fileID: 3000000074}
   - component: {fileID: 3000000075}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3444,7 +3444,7 @@ GameObject:
   - component: {fileID: 3000000078}
   - component: {fileID: 3000000079}
   - component: {fileID: 3000000080}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3594,7 +3594,7 @@ GameObject:
   - component: {fileID: 3000000083}
   - component: {fileID: 3000000084}
   - component: {fileID: 3000000085}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3744,7 +3744,7 @@ GameObject:
   - component: {fileID: 3000000088}
   - component: {fileID: 3000000089}
   - component: {fileID: 3000000090}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3894,7 +3894,7 @@ GameObject:
   - component: {fileID: 3000000093}
   - component: {fileID: 3000000094}
   - component: {fileID: 3000000095}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Apple 20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4044,6 +4044,7 @@ GameObject:
   - component: {fileID: 3000000098}
   - component: {fileID: 3000000099}
   - component: {fileID: 3000000100}
+  - component: {fileID: 3000000114}
   m_Layer: 5
   m_Name: ScoreCanvas
   m_TagString: Untagged
@@ -4063,6 +4064,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3000000109}
+  - {fileID: 3000000112}
   - {fileID: 3000000102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4134,6 +4137,157 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3000000114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000000096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed987654321098765432109876543fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackBackground: {fileID: 3000000110}
+  victoryText: {fileID: 3000000113}
+  victoryMessage: "\u0412\u044B \u0441\u043E\u0431\u0440\u0430\u043B\u0438 \u0432\u0441\u0435 \u044F\u0431\u043B\u043E\u043A\u0438. \u0422\u0435\u043F\u0435\u0440\u044C \u0432\u044B \u0434\u043E\u0432\u043E\u043B\u044C\u043D\u044B?"
+--- !u!1 &3000000108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3000000109}
+  - component: {fileID: 3000000110}
+  m_Layer: 5
+  m_Name: BlackBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3000000109
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000000108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3000000097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3000000110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000000108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3000000111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3000000112}
+  - component: {fileID: 3000000113}
+  m_Layer: 5
+  m_Name: VictoryText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3000000112
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000000111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3000000097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3000000113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000000111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 48
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!1 &3000000101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4250,7 +4404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 3000000103}
   totalApples: 20
-  victoryScreen: {fileID: 0}
+  victoryScreen: {fileID: 3000000114}
 
 --- !u!114 &3000000107
 MonoBehaviour:
