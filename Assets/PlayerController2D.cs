@@ -52,6 +52,13 @@ public class PlayerController2D : MonoBehaviour
         col = GetComponent<Collider2D>();
         rb.freezeRotation = true;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Предотвращает проваливание
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate; // Плавное движение без рывков
+        
+        // Создаём физический материал с нулевым трением для предотвращения застревания
+        PhysicsMaterial2D frictionlessMaterial = new PhysicsMaterial2D("PlayerMaterial");
+        frictionlessMaterial.friction = 0f;
+        frictionlessMaterial.bounciness = 0f;
+        col.sharedMaterial = frictionlessMaterial;
 
         TryEnsureGroundCheck();
     }

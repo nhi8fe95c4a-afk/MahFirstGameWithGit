@@ -10,7 +10,15 @@ public class ScoreManager : MonoBehaviour
     [Tooltip("The Text component that displays the score")]
     public Text scoreText;
 
+    [Header("Victory Settings")]
+    [Tooltip("Total number of apples in the game")]
+    public int totalApples = 20;
+    
+    [Tooltip("Reference to the victory screen")]
+    public VictoryScreen victoryScreen;
+
     private int currentScore = 0;
+    private bool victoryShown = false;
 
     void Start()
     {
@@ -26,6 +34,12 @@ public class ScoreManager : MonoBehaviour
     {
         currentScore += points;
         UpdateScoreDisplay();
+        
+        // Check if all apples are collected
+        if (currentScore >= totalApples && !victoryShown)
+        {
+            ShowVictory();
+        }
     }
 
     /// <summary>
@@ -52,6 +66,23 @@ public class ScoreManager : MonoBehaviour
             // Format score with leading zeros (00-99, then 100+)
             // With 20 apples in the game, D2 format is sufficient
             scoreText.text = currentScore.ToString("D2");
+        }
+    }
+
+    /// <summary>
+    /// Shows the victory screen when all apples are collected.
+    /// </summary>
+    private void ShowVictory()
+    {
+        victoryShown = true;
+        
+        if (victoryScreen != null)
+        {
+            victoryScreen.ShowVictoryScreen();
+        }
+        else
+        {
+            Debug.LogWarning("VictoryScreen reference is not set in ScoreManager!");
         }
     }
 }
