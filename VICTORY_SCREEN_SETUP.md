@@ -4,7 +4,7 @@ This document explains how to set up the Victory Screen in Unity Editor for the 
 
 ## Components Created
 
-1. **VictoryScreen.cs** - Script that manages the victory screen display
+1. **VictoryScreen.cs** - Script that manages the victory screen display with fade-in animation and game pause
 2. **Updated ScoreManager.cs** - Now detects when all 20 apples are collected
 3. **Updated PlayerController2D.cs** - Fixed physics for smooth movement
 
@@ -15,9 +15,13 @@ This document explains how to set up the Victory Screen in Unity Editor for the 
 1. In the Hierarchy, create a new UI Canvas (if you need a separate one for victory):
    - Right-click in Hierarchy → UI → Canvas
    - Name it "VictoryCanvas"
+   - Set Canvas Render Mode to "Screen Space - Overlay" (this ensures it renders directly in front of the camera)
+   - Set Canvas Sort Order to 100 (this ensures it renders on top of all other UI elements)
    - Set Canvas Scaler to "Scale With Screen Size" (recommended)
 
 2. Or use the existing ScoreCanvas
+   - If using existing canvas, ensure it's set to "Screen Space - Overlay" mode
+   - Set Sort Order to 100 to ensure victory screen appears on top
 
 ### 2. Create Black Background Panel
 
@@ -56,6 +60,7 @@ This document explains how to set up the Victory Screen in Unity Editor for the 
    - Drag the BlackBackground Image to the "Black Background" field
    - Drag the VictoryText Text to the "Victory Text" field
    - The victory message should already be set to the Russian text
+   - Fade In Duration is set to 1.0 second by default (can be adjusted)
 
 ### 5. Update ScoreManager
 
@@ -76,9 +81,11 @@ Make sure you have exactly 20 Apple objects in the scene with the AppleCollectib
    - Score display updates in top-right corner
 
 2. **Victory Condition**: When the 20th apple is collected:
+   - Victory screen fades in from alpha 0 to alpha 1 (transparent to opaque)
    - Screen turns black (BlackBackground panel appears)
    - Red victory message appears in the center
-   - Game continues running (player can still move if desired)
+   - Game pauses (Time.timeScale = 0)
+   - Victory screen appears directly in front of the camera, completely covering gameplay
 
 ## Physics Improvements
 
@@ -98,8 +105,11 @@ The PlayerController2D has been updated with:
 - [ ] Apple collection works (apples disappear on contact)
 - [ ] Score counter increases correctly
 - [ ] Victory screen appears after collecting 20th apple
+- [ ] Victory screen fades in smoothly from transparent to opaque
 - [ ] Victory screen has black background
-- [ ] Victory message is in red
+- [ ] Victory message is in red with correct Russian text
+- [ ] Game pauses when victory screen appears (player cannot move, apples stop animating)
+- [ ] Victory screen appears directly in front of camera, covering everything
 - [ ] Player movement is smooth (no jerks)
 - [ ] No sticking when landing on floor while moving
 

@@ -47,9 +47,16 @@ public class VictoryScreenSetupEditor : EditorWindow
             GameObject canvasObj = new GameObject("VictoryCanvas");
             canvas = canvasObj.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 100; // Ensure it renders on top of everything
             canvasObj.AddComponent<CanvasScaler>();
             canvasObj.AddComponent<GraphicRaycaster>();
             Debug.Log("Created new Canvas for Victory Screen");
+        }
+        else
+        {
+            // Ensure existing canvas is set to overlay mode and high sort order
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.sortingOrder = 100;
         }
 
         // Create VictoryScreen GameObject
