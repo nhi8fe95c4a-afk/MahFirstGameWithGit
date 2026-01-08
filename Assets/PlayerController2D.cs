@@ -33,6 +33,7 @@ public class PlayerController2D : MonoBehaviour
     private float lastJumpPressedTime;
 
     private bool jumpConsumed;
+    private float jumpCooldown; // Задержка после прыжка для предотвращения застревания
     private const string AutoGCName = "_Auto_GroundCheck";
 
     void Reset()
@@ -46,6 +47,7 @@ public class PlayerController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         rb.freezeRotation = true;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Предотвращает проваливание
 
         TryEnsureGroundCheck();
     }
@@ -61,10 +63,11 @@ public class PlayerController2D : MonoBehaviour
         // Таймеры
         lastOnGroundTime -= Time.deltaTime;
         lastJumpPressedTime -= Time.deltaTime;
+        jumpCooldown -= Time.deltaTime;
 
         // Проверка земли (без падения, если groundCheck вдруг не задан)
         bool grounded = false;
-        if (groundCheck != null)
+        if (groundCheck != null && jumpCooldown <= 0f) // Не проверяем землю сразу после прыжка
         {
             grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
         }
@@ -101,6 +104,7 @@ public class PlayerController2D : MonoBehaviour
         jumpConsumed = true;
         lastOnGroundTime = 0f;
         lastJumpPressedTime = 0f;
+        jumpCooldown = 0.15f; // Задержка перед следующей проверкой земли
 
         Vector2 v = rb.linearVelocity;
         v.y = 0f;
