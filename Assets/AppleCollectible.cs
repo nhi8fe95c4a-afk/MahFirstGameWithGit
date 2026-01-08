@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Collectible apple that floats and can be collected by the player.
-/// When collected, it increases the score and destroys itself.
+/// When collected, it increases the score and fades out before being destroyed.
 /// </summary>
 public class AppleCollectible : MonoBehaviour
 {
@@ -13,8 +14,14 @@ public class AppleCollectible : MonoBehaviour
     [Tooltip("Height of the levitation movement")]
     public float levitationHeight = 0.3f;
 
+    [Header("Collection Settings")]
+    [Tooltip("Time it takes for the apple to fade out when collected")]
+    public float fadeOutTime = 0.5f;
+
     private Vector3 startPosition;
     private float timeOffset;
+    private bool isCollected = false;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -23,26 +30,62 @@ public class AppleCollectible : MonoBehaviour
         
         // Random time offset so apples don't all move in sync
         timeOffset = Random.Range(0f, Mathf.PI * 2f);
+        
+        // Get the sprite renderer component
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        // Debug: Verify the apple is initialized properly
+        Debug.Log($"Apple {gameObject.name} initialized at position {startPosition}");
+        
+        // Verify we have required components
+        if (spriteRenderer == null)
+        {
+            Debug.LogError($"Apple {gameObject.name} is missing SpriteRenderer!");
+        }
+        
+        var collider = GetComponent<Collider2D>();
+        if (collider == null)
+        {
+            Debug.LogError($"Apple {gameObject.name} is missing Collider2D!");
+        }
+        else if (!collider.isTrigger)
+        {
+            Debug.LogWarning($"Apple {gameObject.name} collider is not set as trigger!");
+        }
     }
 
     void Update()
     {
-        // Create smooth floating animation using sine wave
-        float newY = startPosition.y + Mathf.Sin(Time.time * levitationSpeed + timeOffset) * levitationHeight;
-        transform.position = new Vector3(startPosition.x, newY, startPosition.z);
+        // Only levitate if not collected
+        if (!isCollected)
+        {
+            // Create smooth floating animation using sine wave
+            float newY = startPosition.y + Mathf.Sin(Time.time * levitationSpeed + timeOffset) * levitationHeight;
+            transform.position = new Vector3(startPosition.x, newY, startPosition.z);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the player touched the apple
-        if (other.CompareTag("Player"))
+        // Debug: Log what collided with us
+        Debug.Log($"Apple {gameObject.name} triggered by: {other.gameObject.name}, tag: {other.tag}");
+        
+        // Check if the player touched the apple and we haven't been collected yet
+        if (!isCollected && other.CompareTag("Player"))
         {
+            Debug.Log($"Apple {gameObject.name} collected by Player!");
             CollectApple();
         }
     }
 
     private void CollectApple()
     {
+        // Mark as collected to prevent multiple collections
+        isCollected = true;
+        
+        // Disable the collider so we can't be collected again
+        GetComponent<Collider2D>().enabled = false;
+        
         // Find and notify the score manager
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         if (scoreManager != null)
@@ -50,7 +93,24 @@ public class AppleCollectible : MonoBehaviour
             scoreManager.AddScore(1);
         }
 
-        // Destroy this apple
+        // Start fading out
+        StartCoroutine(FadeOutAndDestroy());
+    }
+
+    private IEnumerator FadeOutAndDestroy()
+    {
+        float elapsedTime = 0f;
+        Color startColor = spriteRenderer.color;
+        
+        while (elapsedTime < fadeOutTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutTime);
+            spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+        
+        // Destroy this apple after fade out is complete
         Destroy(gameObject);
     }
 }
