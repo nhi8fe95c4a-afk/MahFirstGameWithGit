@@ -120,8 +120,9 @@ public class AppleCollectible : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
-        // Create transparent version of current color for fade target
-        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        // Create transparent version by modifying alpha channel
+        Color endColor = startColor;
+        endColor.a = 0f;
         
         while (elapsedTime < fadeOutTime)
         {
