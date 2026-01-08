@@ -14,7 +14,7 @@ public class DialogueUI : MonoBehaviour
     public Text dialogueText;
 
     private bool isDialogueActive = false;
-    private bool keyWasDown = false;
+    private int dialogueOpenedFrame = -1;
 
     void Start()
     {
@@ -41,15 +41,12 @@ public class DialogueUI : MonoBehaviour
 
     private void CheckInput()
     {
-        // Manual key down detection that works even when paused
-        bool keyIsDown = Input.GetKey(KeyCode.E);
-        
-        if (isDialogueActive && keyIsDown && !keyWasDown)
+        // Use GetKeyDown which only triggers once per press
+        // Skip the frame when dialogue was opened to prevent immediate close
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.E) && Time.frameCount > dialogueOpenedFrame)
         {
             CloseDialogue();
         }
-        
-        keyWasDown = keyIsDown;
     }
 
     /// <summary>
@@ -64,9 +61,7 @@ public class DialogueUI : MonoBehaviour
         dialogueText.text = text;
         dialoguePanel.SetActive(true);
         isDialogueActive = true;
-        
-        // Mark key as already pressed to prevent immediate close
-        keyWasDown = true;
+        dialogueOpenedFrame = Time.frameCount;
         
         // Pause the game
         Time.timeScale = 0f;

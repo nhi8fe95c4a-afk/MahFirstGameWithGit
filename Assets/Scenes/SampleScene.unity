@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 256822954}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1234567893}
   - component: {fileID: 1234567894}
   m_Layer: 7
-  m_Name: Apple
+  m_Name: Apple 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +814,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -839,15 +839,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1234567890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6789012345678abcdef01, type: 3}
+  m_Script: {fileID: 11500000, guid: abc123def456789012345678abcdef01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: "\u041F\u0440\u0438\u0432\u0435\u0442. \u042F - \u043C\u043E\u0433\u0443\u0447\u0435\u0435
-    \u044F\u0431\u043B\u043E\u043A\u043E. \u0422\u044B \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043B
-    \u043A\u0432\u0435\u0441\u0442"
-  interactionRange: 2
-  playerTransform: {fileID: 256822953}
-  dialogueUI: {fileID: 1234567932}
+  levitationSpeed: 1
+  levitationHeight: 0.3
 --- !u!1 &1234567900
 GameObject:
   m_ObjectHideFlags: 0
