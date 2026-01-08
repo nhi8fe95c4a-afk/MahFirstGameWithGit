@@ -4249,6 +4249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 3000000103}
+  totalApples: 20
+  victoryScreen: {fileID: 0}
 
 --- !u!114 &3000000107
 MonoBehaviour:
