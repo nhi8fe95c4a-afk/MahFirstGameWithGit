@@ -14,6 +14,8 @@ public class PlayerController2D : MonoBehaviour
     public float jumpBufferTime = 0.1f;
     public float lowJumpMultiplier = 2f;
     public float fallMultiplier = 2.5f;
+    public int maxJumps = 1; // Number of air jumps allowed (1 = double jump total)
+    public float airJumpMultiplier = 0.9f; // Air jumps are slightly weaker
 
     [Header("Ground Check")]
     public Transform groundCheck;          // можно не назначать: создадим автоматически
@@ -34,6 +36,7 @@ public class PlayerController2D : MonoBehaviour
 
     private bool jumpConsumed;
     private float jumpCooldown; // Задержка после прыжка для предотвращения застревания
+    private int jumpsRemaining; // Количество оставшихся прыжков
     private const string AutoGCName = "_Auto_GroundCheck";
     private const float JUMP_GROUND_CHECK_COOLDOWN = 0.15f; // Время до повторной проверки земли после прыжка
 
@@ -73,6 +76,7 @@ public class PlayerController2D : MonoBehaviour
         {
             lastOnGroundTime = coyoteTime;
             jumpConsumed = false;
+            jumpsRemaining = maxJumps; // Восстанавливаем все прыжки при приземлении
         }
 
         // Прыжок
@@ -93,7 +97,13 @@ public class PlayerController2D : MonoBehaviour
 
     private bool CanJump()
     {
-        return lastOnGroundTime > 0f && lastJumpPressedTime > 0f && !jumpConsumed;
+        // Прыжок с земли (включая coyote time и jump buffer)
+        bool groundJump = lastOnGroundTime > 0f && lastJumpPressedTime > 0f && !jumpConsumed;
+        
+        // Воздушный прыжок (double jump, triple jump, etc.)
+        bool airJump = lastJumpPressedTime > 0f && jumpsRemaining > 0 && lastOnGroundTime <= 0f;
+        
+        return groundJump || airJump;
     }
 
     private bool ShouldCheckGround()
@@ -106,16 +116,31 @@ public class PlayerController2D : MonoBehaviour
 
     private void DoJump()
     {
+        // Определяем, это прыжок с земли или воздушный прыжок
+        bool isGroundJump = lastOnGroundTime > 0f;
+        
         jumpConsumed = true;
         lastOnGroundTime = 0f;
         lastJumpPressedTime = 0f;
-        jumpCooldown = JUMP_GROUND_CHECK_COOLDOWN;
+        
+        if (isGroundJump)
+        {
+            jumpCooldown = JUMP_GROUND_CHECK_COOLDOWN;
+            jumpsRemaining = maxJumps; // Восстанавливаем все воздушные прыжки
+        }
+        else
+        {
+            // Воздушный прыжок
+            jumpsRemaining--; // Уменьшаем количество оставшихся прыжков
+        }
 
         Vector2 v = rb.linearVelocity;
         v.y = 0f;
         rb.linearVelocity = v;
 
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        // Воздушные прыжки немного слабее
+        float jumpPower = isGroundJump ? jumpForce : jumpForce * airJumpMultiplier;
+        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
 
     private void ApplyBetterJump()
