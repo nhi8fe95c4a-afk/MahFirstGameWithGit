@@ -23,6 +23,7 @@ public class AppleCollectible : MonoBehaviour
     private bool isCollected = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D appleCollider;
+    private ScoreManager scoreManager;
 
     void Start()
     {
@@ -37,6 +38,9 @@ public class AppleCollectible : MonoBehaviour
         
         // Get the collider component (cache for performance)
         appleCollider = GetComponent<Collider2D>();
+        
+        // Find and cache the ScoreManager (do this once instead of on each collection)
+        scoreManager = FindAnyObjectByType<ScoreManager>();
         
         // Debug: Verify the apple is initialized properly
         Debug.Log($"Apple {gameObject.name} initialized at position {startPosition}");
@@ -54,6 +58,11 @@ public class AppleCollectible : MonoBehaviour
         else if (!appleCollider.isTrigger)
         {
             Debug.LogWarning($"Apple {gameObject.name} collider is not set as trigger!");
+        }
+        
+        if (scoreManager == null)
+        {
+            Debug.LogWarning($"Apple {gameObject.name} could not find ScoreManager in scene!");
         }
     }
 
@@ -89,8 +98,7 @@ public class AppleCollectible : MonoBehaviour
         // Disable the collider so we can't be collected again
         appleCollider.enabled = false;
         
-        // Find and notify the score manager
-        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        // Notify the score manager (cached in Start for performance)
         if (scoreManager != null)
         {
             scoreManager.AddScore(1);
