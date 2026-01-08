@@ -101,9 +101,12 @@ public class AppleCollectible : MonoBehaviour
         isCollected = true;
         
         // Disable the collider so we can't be collected again
-        appleCollider.enabled = false;
+        if (appleCollider != null)
+        {
+            appleCollider.enabled = false;
+        }
         
-        // Notify the score manager (cached in Start for performance)
+        // Notify the score manager (static reference shared by all apples)
         if (scoreManager != null)
         {
             scoreManager.AddScore(1);
@@ -117,7 +120,7 @@ public class AppleCollectible : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
-        // Use Color.clear (0,0,0,0) for target - more efficient than creating new Color
+        // Create transparent version of current color for fade target
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
         
         while (elapsedTime < fadeOutTime)
