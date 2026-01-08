@@ -23,6 +23,9 @@ public class VictoryScreen : MonoBehaviour
     [Tooltip("Duration of the fade-in animation in seconds")]
     public float fadeInDuration = 1.0f;
 
+    // Canvas sort order for victory screen to ensure it renders on top
+    private const int VICTORY_CANVAS_SORT_ORDER = 100;
+
     void Start()
     {
         // Hide the victory screen initially
@@ -44,7 +47,7 @@ public class VictoryScreen : MonoBehaviour
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             
             // Set high sort order to ensure it renders on top
-            canvas.sortingOrder = 100;
+            canvas.sortingOrder = VICTORY_CANVAS_SORT_ORDER;
         }
     }
 
@@ -79,17 +82,20 @@ public class VictoryScreen : MonoBehaviour
     {
         float elapsedTime = 0f;
         
-        // Start with alpha at 0
+        // Cache initial colors and set alpha to 0
+        Color bgColor = Color.black;
+        Color textColor = Color.red;
+        
         if (blackBackground != null)
         {
-            Color bgColor = blackBackground.color;
+            bgColor = blackBackground.color;
             bgColor.a = 0f;
             blackBackground.color = bgColor;
         }
         
         if (victoryText != null)
         {
-            Color textColor = victoryText.color;
+            textColor = victoryText.color;
             textColor.a = 0f;
             victoryText.color = textColor;
         }
@@ -103,7 +109,6 @@ public class VictoryScreen : MonoBehaviour
             // Update alpha for background
             if (blackBackground != null)
             {
-                Color bgColor = blackBackground.color;
                 bgColor.a = alpha;
                 blackBackground.color = bgColor;
             }
@@ -111,7 +116,6 @@ public class VictoryScreen : MonoBehaviour
             // Update alpha for text
             if (victoryText != null)
             {
-                Color textColor = victoryText.color;
                 textColor.a = alpha;
                 victoryText.color = textColor;
             }
@@ -122,14 +126,12 @@ public class VictoryScreen : MonoBehaviour
         // Ensure final alpha is exactly 1
         if (blackBackground != null)
         {
-            Color bgColor = blackBackground.color;
             bgColor.a = 1f;
             blackBackground.color = bgColor;
         }
         
         if (victoryText != null)
         {
-            Color textColor = victoryText.color;
             textColor.a = 1f;
             victoryText.color = textColor;
         }
