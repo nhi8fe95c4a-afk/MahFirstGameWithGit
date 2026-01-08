@@ -846,6 +846,8 @@ MonoBehaviour:
     \u044F\u0431\u043B\u043E\u043A\u043E. \u0422\u044B \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043B
     \u043A\u0432\u0435\u0441\u0442"
   interactionRange: 2
+  playerTransform: {fileID: 256822953}
+  dialogueUI: {fileID: 1234567932}
 --- !u!1 &1234567900
 GameObject:
   m_ObjectHideFlags: 0
