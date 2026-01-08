@@ -4,6 +4,11 @@ using UnityEngine;
 /// Camera follow script that tracks the player with a flexible dead zone.
 /// The camera stays still when the player is within the dead zone bounds,
 /// and only starts following when the player moves beyond those bounds.
+/// 
+/// Default Settings:
+/// - Dead Zone: 3x2 units (width x height)
+/// - Smooth Speed: 0.125 (responsive but smooth)
+/// - Offset: (0, 0, -10) for proper 2D depth
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
