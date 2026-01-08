@@ -22,6 +22,7 @@ public class AppleCollectible : MonoBehaviour
     private float timeOffset;
     private bool isCollected = false;
     private SpriteRenderer spriteRenderer;
+    private Collider2D appleCollider;
 
     void Start()
     {
@@ -34,6 +35,9 @@ public class AppleCollectible : MonoBehaviour
         // Get the sprite renderer component
         spriteRenderer = GetComponent<SpriteRenderer>();
         
+        // Get the collider component (cache for performance)
+        appleCollider = GetComponent<Collider2D>();
+        
         // Debug: Verify the apple is initialized properly
         Debug.Log($"Apple {gameObject.name} initialized at position {startPosition}");
         
@@ -43,12 +47,11 @@ public class AppleCollectible : MonoBehaviour
             Debug.LogError($"Apple {gameObject.name} is missing SpriteRenderer!");
         }
         
-        var collider = GetComponent<Collider2D>();
-        if (collider == null)
+        if (appleCollider == null)
         {
             Debug.LogError($"Apple {gameObject.name} is missing Collider2D!");
         }
-        else if (!collider.isTrigger)
+        else if (!appleCollider.isTrigger)
         {
             Debug.LogWarning($"Apple {gameObject.name} collider is not set as trigger!");
         }
@@ -84,7 +87,7 @@ public class AppleCollectible : MonoBehaviour
         isCollected = true;
         
         // Disable the collider so we can't be collected again
-        GetComponent<Collider2D>().enabled = false;
+        appleCollider.enabled = false;
         
         // Find and notify the score manager
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
@@ -101,12 +104,13 @@ public class AppleCollectible : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color startColor = spriteRenderer.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
         
         while (elapsedTime < fadeOutTime)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutTime);
-            spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            float t = elapsedTime / fadeOutTime;
+            spriteRenderer.color = Color.Lerp(startColor, endColor, t);
             yield return null;
         }
         
